@@ -1,6 +1,7 @@
 #![no_std]
 #![no_main]
 
+mod vga;
 use core::panic::PanicInfo;
 
 #[panic_handler]
