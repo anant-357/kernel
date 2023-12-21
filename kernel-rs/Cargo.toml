@@ -9,8 +9,8 @@ edition = "2024"
 
 
 [dependencies]
-bootloader = "0.9.23"
-volatile = "0.2.7"
+bootloader_api = "0.11.4"
+volatile = "0.5.1"
 spin = "0.9.8"
 
 [dependencies.lazy_static]
