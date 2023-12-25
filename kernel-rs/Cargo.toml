@@ -1,25 +1,32 @@
-cargo-features = ["edition2024"]
-
 [package]
 name = "kernel-rs"
 version = "0.1.0"
-edition = "2024"
+edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[workspace.dependencies]
+bootloader_api = "0.11.4"
+spin = "0.9.8"
+volatile = "0.5.1"
+lazy_static = { version = "1.4.0", features = ["spin_no_std"] }
+conquer-once = { version = "0.4.0", default-features = false }
+noto-sans-mono-bitmap = { version = "0.2.0", features = [
+  "regular",
+  "size_16",
+  "unicode-basic-latin",
+  "unicode-specials",
+] }
+x86_64 = { version = "0.14.11" }
+uart_16550 = { version = "0.3.0" }
+
+[workspace]
+members = ["kernel"]
+
+[build-dependencies]
+bootloader = "0.11.4"
+kernel = { path = "kernel", version = "0.1.0", artifact = "bin", target = "x86_64-unknown-none" }
 
 [dependencies]
-bootloader_api = "0.11.4"
-volatile = "0.5.1"
-spin = "0.9.8"
-
-[dependencies.lazy_static]
-version = "1.4.0"
-features = ["spin_no_std"]
-
-
-[profile.release]
-panic = "abort"
-
-[profile.dev]
-panic = "abort"
+ovmf-prebuilt = "0.1.0-alpha.1"
+kernel = { path = "kernel", artifact = "bin", target = "x86_64-unknown-none" }
