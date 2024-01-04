@@ -1,9 +1,6 @@
 fn main() {
-    // read env variables that were set in build script
     let uefi_path = env!("UEFI_PATH");
     let bios_path = env!("BIOS_PATH");
-
-    // choose whether to start the UEFI or BIOS image
     let uefi = true;
 
     let mut cmd = std::process::Command::new("qemu-system-x86_64");
